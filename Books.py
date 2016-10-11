@@ -18,10 +18,7 @@ Created on 10-11-2015
 3. РТМ 26-02-40-77 Тепловой расчет трубчатых печей. Нормативный метод
 4. Расчет воздухоподогревателей и других теплообменников
 
-
-
 """
-
 
 @xlfunc
 def f_b_000_Interpolate(x,xp,yp):
@@ -37,7 +34,6 @@ def f_b_000_Interpolate2D(x1,x2,VY1,VY2,MZ):
     Y1Rez.append(numpy.interp(x2,VY2[ind],MZ[ind]))
   Rez = numpy.interp(x1,VY1,Y1Rez)
   return Rez
-
 
 @xlfunc
 def f_b_000_S_perehod(a,b,h,d):
@@ -67,17 +63,8 @@ def f_b_000_V_cylindr(d,h):
   return Rez
 
 
-
-
-
-
-
-
-
-
 # Книга 1 - Каталог трубчатые печи
-
-# 
+ 
 @xlfunc
 def f_b_001_f_01_Phi3(qf,qt):
   """Phi3 """  
@@ -210,7 +197,9 @@ def f_b_002_f_02_Sisp(Sr,f,c1,c2):
 @xlfunc
 def f_b_002_f_03_Smin(Dn):
   """Smin, mm"""  
-  Rez = numpy.interp(Dn,[73.0,89.0,102.0,108.0,114.0,121.0,127.0,159.0,168.0,219.0,273.0,325.0],[4.5,5.0,5.0,5.0,5.5,5.5,5.5,6.0,6.0,7.0,8.0,8.0])
+  Rez = numpy.interp(Dn,
+                     [73.0,89.0,102.0,108.0,114.0,121.0,127.0,159.0,168.0,219.0,273.0,325.0],
+                     [4.5,5.0,5.0,5.0,5.5,5.5,5.5,6.0,6.0,7.0,8.0,8.0])
   return Rez
   
 @xlfunc
@@ -222,7 +211,9 @@ def f_b_002_f_04_f(T,TypeStile):
 @xlfunc
 def f_b_002_f_05_Y(RDn):
   """Smin, mm"""  
-  Rez = numpy.interp(RDn,[1.0,1.5,2.0,3.0,4.0,5.0,6.0,7.0],[1.5,1.25,1.17,1.1,1.07,1.06,1.05,1.04])
+  Rez = numpy.interp(RDn,
+                     [1.0,1.5,2.0,3.0,4.0,5.0,6.0,7.0],
+                     [1.5,1.25,1.17,1.1,1.07,1.06,1.05,1.04])
   return Rez
 
 @xlfunc
@@ -539,13 +530,15 @@ def f_b_003_f_30_cFuelGas(CH4,C2H6,C3H8,C4H10,C5H12,C6H14,C6H12,C6H6,
   cC2H6 = numpy.interp(t,
                      [0.0,100.0,200.0,300.0,400.0,500.0,600.0,700.0,800.0,900.0,1000.0],
                      [2.21,2.495,2.776,3.046,3.308,3.557,3.776,3.985,4.183,4.363,4.529])
-
+  # Приблизительно!!!
   cC3H8 = numpy.interp(t,
                      [0.0,1000.0],
                      [3.049,6.462])
+  # Приблизительно!!!
   cC4H10 = numpy.interp(t,
                      [0.0,1000.0],
                      [4.129,8.402])
+  # Приблизительно!!!
   cC5H12 = numpy.interp(t,
                      [0.0,1000.0],
                      [5.13,10.346])
@@ -561,12 +554,9 @@ def f_b_003_f_30_cFuelGas(CH4,C2H6,C3H8,C4H10,C5H12,C6H14,C6H12,C6H6,
   cC6H6 = numpy.interp(t,
                      [0.0,1000.0],
                      [5.13,10.346])
-
-  # Приблизительно!!!
   cC2H4 = numpy.interp(t,
                      [0.0,100.0,200.0,300.0,400.0,500.0,600.0,700.0,800.0,900.0,1000.0],
                      [2.21,2.495,2.776,3.046,3.308,3.557,3.776,3.985,4.183,4.363,4.529])
-
   # Приблизительно!!!
   cC3H6 = numpy.interp(t,
                      [0.0,1000.0],
@@ -583,23 +573,22 @@ def f_b_003_f_30_cFuelGas(CH4,C2H6,C3H8,C4H10,C5H12,C6H14,C6H12,C6H6,
   cC4H6 = numpy.interp(t,
                      [0.0,1000.0],
                      [4.129,8.402])
-  # Приблизительно!!!
   cC2H2 = numpy.interp(t,
                      [0.0,100.0,200.0,300.0,400.0,500.0,600.0,700.0,800.0,900.0,1000.0],
                      [2.21,2.495,2.776,3.046,3.308,3.557,3.776,3.985,4.183,4.363,4.529])
-
+  # Приблизительно!!!
   cH2 = numpy.interp(t,
                      [0.0,1000.0],
                      [1.278,1.328])
-
+  # Приблизительно!!!
   cH2S = numpy.interp(t,
                      [0.0,1000.0],
                      [1.508,1.85])
-
+  # Приблизительно!!!
   cO2 = numpy.interp(t,
                      [0.0,1000.0],
                      [1.3069,1.5909])
-
+  # Приблизительно!!!
   cN2 = numpy.interp(t,
                      [0.0,2300.0],
                      [1.2955,1.5021])
@@ -607,24 +596,21 @@ def f_b_003_f_30_cFuelGas(CH4,C2H6,C3H8,C4H10,C5H12,C6H14,C6H12,C6H6,
   cAr = numpy.interp(t,
                      [0.0,2300.0],
                      [1.2955,1.5021])
-
+  # Приблизительно!!!
   cH2O = numpy.interp(t,
                      [0.0,2300.0],
                      [1.4954,2.0204])
-
+  # Приблизительно!!!
   cCO = numpy.interp(t,
                      [0.0,1000.0],
                      [1.3,1.411])
-
   cCO2 = numpy.interp(t,
                      [0.0,100.0,200.0,300.0,400.0,500.0,600.0,700.0,800.0,900.0,1000.0,1100.0,1200.0,1300.0,1400.0,1500.0,1600.0,1700.0,1800.0,1900.0,2000.0,2100.0,2200.0,2300.0],
                      [1.6010,1.7016,1.7887,1.8641,1.9312,1.9902,2.0426,2.09,2.1327,2.1708,2.2052,2.2366,2.2655,2.2915,2.3154,2.3372,2.3573,2.3761,2.3933,2.4092,2.4239,2.4377,2.4503,2.462])
 
-  # Приблизительно!!!
   cSO2 = numpy.interp(t,
                      [0.0,100.0,200.0,300.0,400.0,500.0,600.0,700.0,800.0,900.0,1000.0,1100.0,1200.0,1300.0,1400.0,1500.0,1600.0,1700.0,1800.0,1900.0,2000.0,2100.0,2200.0,2300.0],
                      [1.6010,1.7016,1.7887,1.8641,1.9312,1.9902,2.0426,2.09,2.1327,2.1708,2.2052,2.2366,2.2655,2.2915,2.3154,2.3372,2.3573,2.3761,2.3933,2.4092,2.4239,2.4377,2.4503,2.462])
-
 
   part1 = cCH4*CH4+cC2H6*C2H6+cC3H8*C3H8+cC4H10*C4H10
   part2 = cC5H12*C5H12+cC6H14*C6H14+cC6H12*C6H12+cC6H6*C6H6
@@ -704,7 +690,7 @@ def f_b_003_f_34_kAsh(Regime,Teta,AlfaFH,Cr_Hr):
 @xlfunc
 def f_b_003_f_35_aGas(kG,pG,s):
   ''' Степень черноты газов'''
-  Rez = 1.0-numpy.exp(-(kG)*pG*s)
+  Rez = 1.0-numpy.exp(-kG*pG*s)
   return Rez
 
 @xlfunc
@@ -718,7 +704,7 @@ def f_b_003_f_37_DeltaKsi(TypeRadPart,af,Ksi):
   ''' Величина Дельта Кси:
   TypeRadPart:
   1 - kamernie topki;
-  2 - topki s izluchaushimi stenami (sloevie ytopki);
+  2 - topki s izluchaushimi stenami (sloevie topki);
   '''
   if TypeRadPart == 1.0:
     if Ksi <= 0.5:
@@ -2009,30 +1995,8 @@ def f_b_003_f_75_TetaT2OtnNTR98(M,BuEf,Bo):
   return Rez
 
 
-
-
-
-
-
-'''
-  # Объемные доли
-  r1RO2PCFuelOil = VRO20PCFuelOil/V1PCFuelOil
-  r2RO2PCFuelOil = VRO20PCFuelOil/V2PCFuelOil
-  r1H2OPCFuelOil = V0H2OPCFuelOil/V1PCFuelOil
-  r2H2OPCFuelOil = VH2OPCFuelOil/V2PCFuelOil
-  rp1PCFuelOil = r1RO2PCFuelOil+r1H2OPCFuelOil
-  rp2PCFuelOil = r2RO2PCFuelOil+r2H2OPCFuelOil
-'''
-
-
 # Книга 4 - Моя книга по расчету печей - сборная солянка нужных мне функций
 # Ручной расчет трубчатых печей
-
-@xlfunc
-def f_b_004_f_01_Test():
-  Rez = 10000.0
-  return Rez
-
 
   
 @xlfunc
@@ -2812,7 +2776,6 @@ def f_b_004_f_32_psiAH(Nsch,tt1,tt2,t1, t2):
                      [N1, N2, N3, N4, N5, N6, N7, N8, N9])
   return Psi
 
-
 @xlfunc
 def f_b_004_f_33_dtlogAH(TypeFlow,Nsch,tt1,tt2,t1, t2):
   '''DeltaT of AitHeater
@@ -2835,36 +2798,3 @@ def f_b_004_f_33_dtlogAH(TypeFlow,Nsch,tt1,tt2,t1, t2):
         dtysl = ((tt1-t2)-(tt2-t1))/numpy.log((tt1-t2)/(tt2-t1))
     Rez = Psi*dtysl
   return float(Rez)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
