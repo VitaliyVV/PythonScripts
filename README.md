@@ -1,5 +1,5 @@
 # PythonScripts
-Трубчатые печи и воздухоподогреватели (Fire Heater and Air Heater Project)
+***Трубчатые печи и воздухоподогреватели (Fire Heater and Air Heater Project)***
 
 **Проект с наработками по расчетам трубчатых печей и воздухоподогревателей.**
 
