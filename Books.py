@@ -19,6 +19,26 @@ Created on 10-11-2015
 4. Расчет воздухоподогревателей и других теплообменников
 
 
+Открытые и для себя в том числе библиотеки работы
+с теплофизикой веществ и их вызов
+1. CoolProp (http://www.coolprop.org/
+https://github.com/CoolProp/CoolProp)
+2. Termo (https://github.com/CalebBell/thermo)
+
+
+Вызов:
+1. 
+import CoolProp
+PropsSI('D', 'T', 298.15, 'P', 101325, 'Nitrogen')
+2. 
+>>> import thermo
+>>>tol = thermo.Chemical('toluene')
+>>>tol.Tm, tol.Tb, tol.Tc
+(179.2, 383.75, 591.75)
+>>> tol.rho, tol.Cp, tol.k, tol.mu
+(862.2380125827527, 1706.0746129119084, 0.13034801424538045, 0.0005521951637285534)
+
+
 
 """
 
@@ -66,6 +86,11 @@ def f_b_000_V_cylindr(d,h):
   Rez = 0.25*numpy.pi*d*d*h
   return Rez
 
+@xlfunc
+def f_b_000_eval(Rez):
+  '''Eval python exspresions'''
+  return str(eval(str(Rez)))
+ 
 
 
 
@@ -2279,6 +2304,16 @@ def f_b_003_f_74_BuEf(Bu):
 def f_b_003_f_75_TetaT2OtnNTR98(M,BuEf,Bo):
   ''' Относительная температура газов на выходе из топки, TetaT2Otn'''
   Rez = (Bo**0.6)/(M*(BuEf**0.3)+(Bo**0.6))
+  return Rez
+
+@xlfunc
+def f_b_003_f_76_TetaT2_NTR98(Ta,M,BuEf,Psi,FSt,Phi,Br,VCsr):
+  ''' Температура газов на выходе из топки, TetaT2 NTR 1998'''
+  part1 = 5.67e-11*Psi*FSt*Ta*Ta*Ta
+  part2 = Phi*Br*VCsr
+  part3 = (part1/part2)**0.6
+  part4 = (1.0+M*(BuEf**0.3)*part3) 
+  Rez = (Ta/part4)-273.15
   return Rez
 
 
