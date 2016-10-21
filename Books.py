@@ -28,7 +28,7 @@ https://github.com/CoolProp/CoolProp)
 
 Вызов:
 1. 
-import CoolProp
+from CoolProp.CoolProp import PropsSI
 PropsSI('D', 'T', 298.15, 'P', 101325, 'Nitrogen')
 2. 
 >>> import thermo
@@ -2558,6 +2558,7 @@ def f_b_004_f_16_Alfa01(Re,Pr,dn,s1,s2,z2,Lambda):
   Sigma2d = ((0.25*(Sigma1**2)+(Sigma2**2))**0.5)
   PhiSigma = (Sigma1-1)/(Sigma2d-1)
 # Cs
+  Cs = 1.0
   if (PhiSigma > 0.1)and (PhiSigma <=1.7):  
     Cs = 0.95*(PhiSigma**0.1)
   if (PhiSigma > 1.7) and (PhiSigma <= 4.5):
@@ -2565,7 +2566,8 @@ def f_b_004_f_16_Alfa01(Re,Pr,dn,s1,s2,z2,Lambda):
       Cs = 0.77*(PhiSigma**0.5)
     if Sigma1 >= 3.0:
       Cs = 0.95*(PhiSigma**0.1)
-# Cz  
+# Cz
+  Cz = 1.0    
   if (z2 < 10.0) and (Sigma1 < 3.0):
     Cz = 3.12*(z2**0.05)-2.5
   if (z2 < 10.0) and (Sigma1 >= 3.0):
@@ -2610,6 +2612,7 @@ def f_b_004_f_18_DzettaChessBundle(d,s1,s2,z2,Re):
   s2d = (0.25*(s1**2.0)+(s2**2.0))**0.5
   Phi = (s1-d)/(s2d-d)
   Dzetta0 = 0.0
+  Cs = 1.0
   if (Phi >= 0.1) and (Phi <= 1.7):
     if (Sigma1 >= 1.44):
       Cs = 3.2+0.66*(1.7-Phi)**1.5
